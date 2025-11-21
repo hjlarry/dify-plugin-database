@@ -18,13 +18,13 @@ extra:
 credentials_for_provider:
   db_uri:
     help:
-      en_US: For example `mysql+pymysql://<user>:<password>@<host>:<port>/<database>`
-      zh_Hans: 例如 `mysql+pymysql://<user>:<password>@<host>:<port>/<database>`
+      en_US: For example `mysql+pymysql://<user>:<password>@<host>:<port>/<database>`, `clickhouse://<user>:<password>@<host>:<port>/<database>`
+      zh_Hans: 例如 `mysql+pymysql://<user>:<password>@<host>:<port>/<database>`、`clickhouse://<user>:<password>@<host>:<port>/<database>`
     label:
       en_US: Database URI
       zh_Hans: 数据库 URI
     placeholder:
-      en_US: Please enter the database URI
-      zh_Hans: 请输入数据库 URI
+      en_US: Please enter the database URI (supports MySQL, PostgreSQL, SQLite, SQL Server, Oracle, ClickHouse, MyScale)
+      zh_Hans: 请输入数据库 URI（支持 MySQL、PostgreSQL、SQLite、SQL Server、Oracle、ClickHouse、MyScale）
     required: false
     type: secret-input

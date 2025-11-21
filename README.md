@@ -1,7 +1,7 @@
 ## database
 
 **Author:** hjlarry  
-**Version:** 0.0.5  
+**Version:** 0.0.7
 **Type:** tool   
 **Repo:** [https://github.com/hjlarry/dify-plugin-database](https://github.com/hjlarry/dify-plugin-database)  
 **Feature Request:** [issues](https://github.com/hjlarry/dify-plugin-database/issues)  
@@ -18,14 +18,22 @@ You can get different format of data, like `json`, `csv`, `yaml`, `xlsx`, `html`
 
 ### Usage
 
-#### 1. Input a databaseURI for Authorization. Now support `mysql`, `postgresql`, `sqlite`, `sqlserver`, `oracle`, example format:
+#### 1. Input a databaseURI for Authorization. Now support `mysql`, `postgresql`, `sqlite`, `sqlserver`, `oracle`, `clickhouse`, example format:
 ```shell
 mysql+pymysql://root:123456@localhost:3306/test
 postgresql+psycopg2://postgres:123456@localhost:5432/test
 sqlite:///test.db
 mssql+pymssql://<username>:<password>@<freetds_name>/?charset=utf8
 oracle+oracledb://user:pass@hostname:port[/dbname][?service_name=<service>[&key=value&key=value...]]
+clickhouse://default:password@localhost:8123/default
+clickhouse+connect://default:password@localhost:8123/mydatabase
 ```
+
+**ClickHouse/MyScale Notes:**
+- Support for ClickHouse and MyScale (a vector database based on ClickHouse)
+- Uses `clickhouse-connect` Python driver
+- Default ports: 8123 (HTTP), 9000 (Native TCP)
+- MyScale is a ClickHouse-compatible vector database with vector similarity search capabilities
 
 > **Note:**: this plugin always run in a docker, so the `localhost` always means docker internal network, try `host.docker.internal` instead.
 
@@ -57,6 +65,13 @@ curl -X POST 'https://daemon-plugin.dify.dev/o3wvwZfYFLU5iGopr5CxYmGaM5mWV7xf/sq
 
 
 ### Changelog
+
+#### 0.0.7
+1. Added ClickHouse/MyScale database support
+2. Uses clickhouse-connect 0.10.0+ driver
+3. Support all existing output formats (JSON, CSV, YAML, XLSX, HTML, Markdown)
+4. Support table schema retrieval, including ClickHouse-specific engine, sorting keys, partition keys, etc.
+5. Fully compatible with MyScale vector database
 
 #### 0.0.6
 1. support get more table info of `get table schema` tool
